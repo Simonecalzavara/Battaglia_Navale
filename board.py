@@ -20,13 +20,18 @@ def print_board(board_array, row_size):
 def board_add(nave,legenda_asse_orizzontale_iniziale,board,board_display):
     i=0
     while i < nave.dimensione:
-        coordinate_ = input('inserisci le coordinate della nave che vuoi piazzare: ')
-        x_, y_ = coordinate_.split()
-        for key in legenda_asse_orizzontale_iniziale:
-            if legenda_asse_orizzontale_iniziale.get(key) == x_:
-                if x_.isalpha():
-                    x = key
-                    y = int(y_)
-                    break
-        nave.inserimento(board, board_display, x, y)
-        i = i + 1
+        try:
+            coordinate_ = input('inserisci le coordinate della nave che vuoi piazzare: ')
+            x_, y_ = coordinate_.split()
+            for key in legenda_asse_orizzontale_iniziale:
+                if legenda_asse_orizzontale_iniziale.get(key) == x_:
+                    if x_.isalpha():
+                        x = key
+                        y = int(y_)
+                        i=i+1
+                        break
+            nave.inserimento(board, board_display, x, y)
+        except:
+            print("inserisci come prima coordinata la coordinata alfabetica")
+
+
