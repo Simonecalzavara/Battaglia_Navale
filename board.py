@@ -17,21 +17,22 @@ def print_board(board_array, row_size):
     print()
 
 
-def board_add(nave,legenda_asse_orizzontale_iniziale,board,board_display):
-    i=0
-    while i < nave.dimensione:
-        try:
-            coordinate_ = input('inserisci le coordinate della nave che vuoi piazzare: ')
-            x_, y_ = coordinate_.split()
+def board_add(nave,legenda_asse_orizzontale_iniziale,board,row_size,col_size): #metodo che permette l'inserimento di una nave all'interno del tavolo
+        while True:
+            print("Inserisci la prima coordinata che vuoi inserire della ", nave,"\nLa coordinata inserita rappresenta la testa della nave.")
+            coordinate_ = input('Inserisci le coordinate: ')
+            col_, rig_ = coordinate_.split()
             for key in legenda_asse_orizzontale_iniziale:
-                if legenda_asse_orizzontale_iniziale.get(key) == x_:
-                    if x_.isalpha():
-                        x = key
-                        y = int(y_)
-                        i=i+1
-                        break
-            nave.inserimento(board, board_display, x, y)
-        except:
-            print("inserisci come prima coordinata la coordinata alfabetica")
+                if legenda_asse_orizzontale_iniziale.get(key) == col_:
+                    if col_.isalpha():
+                       col = key
+                       rig= int(rig_)
+                       break
+            if board[rig-1][col-1]==0:
+                if nave.inserimento(col,rig,row_size,col_size,board)==1:
+                    break
+            else:
+                print("la casella selezionata e'già occupata")
+
 
 
