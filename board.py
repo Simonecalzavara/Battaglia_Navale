@@ -1,8 +1,7 @@
+from variable import legenda_asse_orizzontale_iniziale
+
 #funzione per visualizzare a schermo il campo da gioco
 def print_board(board_array, row_size):
-    # creazione del tavolo da gioco vuoto
-    legenda_asse_orizzontale_iniziale = {1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F', 7: 'G', 8: 'H', 9: 'I',
-                                         10: 'L', 11: 'M', 12: 'N', 13: 'O', 14: 'P', 15: 'Q'}
 
     # Creazione delle coordinate in maniera dinamica
     legenda_asse_orizzontale = ''
@@ -17,17 +16,12 @@ def print_board(board_array, row_size):
     print()
 
 
-def board_add(nave,legenda_asse_orizzontale_iniziale,board,row_size,col_size): #metodo che permette l'inserimento di una nave all'interno del tavolo
+def board_add(nave,board,row_size,col_size): #metodo che permette l'inserimento di una nave all'interno del tavolo
         while True:
             print("Inserisci la prima coordinata che vuoi inserire della ", nave,"\nLa coordinata inserita rappresenta la testa della nave.")
-            coordinate_ = input('Inserisci le coordinate: ')
-            col_, rig_ = coordinate_.split()
-            for key in legenda_asse_orizzontale_iniziale:
-                if legenda_asse_orizzontale_iniziale.get(key) == col_:
-                    if col_.isalpha():
-                       col = key
-                       rig= int(rig_)
-                       break
+            coordinate_ = (input('Inserisci le coordinate: ')).replace(""," ")
+            coordinate=coordinate_.upper()
+            rig,col=coord_type_change(coordinate)
             if board[rig-1][col-1]==0:
                 if nave.inserimento(col,rig,row_size,col_size,board)==1:
                     break
@@ -35,4 +29,15 @@ def board_add(nave,legenda_asse_orizzontale_iniziale,board,row_size,col_size): #
                 print("la casella selezionata e'già occupata")
 
 
-
+def coord_type_change(coordinate):
+    for key in legenda_asse_orizzontale_iniziale:
+        try:
+            letter = coordinate.find(legenda_asse_orizzontale_iniziale.get(key))
+            if legenda_asse_orizzontale_iniziale.get(key) == coordinate[letter]:
+                col = key
+        except ValueError:
+            print("Inserisci una coordinata alfabetica valida")
+    numbers = [int(num) for num in coordinate.split() if num.isdigit()]
+    rig = numbers[0]
+    return rig,col
+    pass
