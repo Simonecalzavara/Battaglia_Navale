@@ -7,22 +7,22 @@ class Navi:
 
     #metodo della classe che permette l'inserimento delle coordinate della nave
     def inserimento(self, coord_col, coord_rig,row_size,col_size,board):
-        orientamento_=input("Inserisci la maniera con cui vuoi inserire la nave. Orizzontalmente o Verticalmente?\n\nInserisci una delle due scelte: ")
+        orientamento_=input("Inserisci la maniera con cui vuoi inserire la nave. Orizzontale o Verticale?\n\nInserisci una delle due scelte: ")
         orientamento=orientamento_.casefold()
         index=0
         match orientamento:
-            case "orizzontalmente":
+            case "orizzontale":
                 if coord_rig in range(row_size):
                     while index in range(self.dimensione) :
-                        if coord_col + index in range(col_size):   #inserimento delle coordinate in maniera automatica. Inserisce verso dx
+                        if coord_col + index in range(col_size):   #Inserimento delle coordinate in maniera automatica. Inserisce verso dx
                             self.coordinate.append([coord_col+index,coord_rig])
                             index=index+1
                 else:
                     print("\nLa coordinata e' fuori dalla scacchiera. Inserisci una coordinata valida")
-            case "verticalmente":
+            case "verticale":
                 if coord_col in range(col_size):
                     while index in range(self.dimensione):
-                        if coord_rig + index in range(row_size):   #inserimento delle coordinate in maniera automatica. Inserisce verso il basso
+                        if coord_rig + index in range(row_size):   #Inserimento delle coordinate in maniera automatica. Inserisce verso il basso
                             self.coordinate.append([coord_col,coord_rig+index])
                             index=index+1
                 else:
