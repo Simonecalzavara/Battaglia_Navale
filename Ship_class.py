@@ -54,3 +54,9 @@ class Navi:
             if board[coordinate_col-1][coordinate_rig-1]==1:
                 return True
         return False
+
+    def hit(self,guess_row,guess_col):
+        if [guess_col,guess_row] in self.coordinate:
+            self.coordinate.remove([guess_col,guess_row])
+            return True
+        return False
