@@ -55,7 +55,7 @@ class Navi:
                 return True
         return False
 
-    def hit(self,guess_row,guess_col):
+    def hit(self,guess_row,guess_col):      #metodo che elimina le coordinate dalla nave se viene colpita
         if [guess_col,guess_row] in self.coordinate:
             self.coordinate.remove([guess_col,guess_row])
             return True
