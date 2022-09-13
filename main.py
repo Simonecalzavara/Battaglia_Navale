@@ -1,26 +1,17 @@
+import os
 import board as b
-from Ship_class import *
-from variable import *
-from time import sleep
+import variable
+
+os.system('cls')
 
 print("Benvenuto ")
 
-#variabili
-n_ins=input('Inserisci le dimensioni del tavolo da gioco:  ')
-row_size=int(n_ins)
-col_size=row_size
+args = variable.initialize_parser()
+variable.check_parser(args)
+board_display1 = [["O"] * args.columns for x in range(args.rows)]
+board_display2 = [["O"] * args.columns for x in range(args.rows)]
 
-#creazione della scacchiera vuota
-board = [[0] * col_size for x in range(row_size)]
-board_display = [["O"] * col_size for x in range(row_size)]
-b.print_board(board_display,row_size)
-
-#clear screen
-sleep(2)
-clearconsole=lambda: print('\n' * 150)
-clearconsole()
-
-#fase di inserimento delle navi
+#fase d'inserimento delle navi
 print("""\nHai a disposizione 5 navi, puoi inserire ciascuna nave soltanto una volta.
 Portaerei, la puoi inserire in 5 caselle
 Corazzata, la puoi inserire in 4 caselle
@@ -29,13 +20,6 @@ sottomarino, la puoi inserire in 3 caselle
 Cacciatorpediniere la puoi inserire in 2 caselle""")
 
 print("\nLe navi verranno inserite in maniera crescente e secondo la loro dimensione.")
-ship_list=[cacciatorpediniere,sottomarino,incrociatore,corazzata,portaerei]
-for ship in ship_list:
-    b.print_board(board,row_size)
-    b.board_add(ship,legenda_asse_orizzontale_iniziale,board,row_size,col_size)
-    clearconsole()
 
-b.print_board(board,row_size)
-
-#visualizzazione delle navi piazzate
-b.print_board(board_display,row_size)
+board_player_1=b.board_add(variable.giocatore1,variable.ship_list,args.rows,args.columns)
+board_player_2=b.board_add(variable.giocatore2,variable.ship_list_2,args.rows,args.columns)
