@@ -30,5 +30,4 @@ def menu():
             return option2()
             break
         else:
-            print('Invalid option. Please enter a number between 1 and 2.')
-
+            print('Opzione invalida.Inserisci un numero tra 1 e 2.')
