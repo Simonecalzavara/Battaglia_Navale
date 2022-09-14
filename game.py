@@ -37,4 +37,17 @@ def attack_col(guess_col,col_size_):
     except ValueError:
         print("Inserisci un numero")
 
+# funzione per la gestione del turno del giocatore
+def turn(player,ship_list,columns,rows,board_display):
+    while True:
+        os.system('cls')
+        board.print_board(board_display, rows)
+        print(player,'é il momento di attaccare\n')
+        if hit_guess(board_display, rows, columns,ship_list):
+            for ship in ship_list:
+                if not ship.coordinate:
+                    ship_list.remove(ship)
+        else:
+            break
+    return ship_list,board_display
 
