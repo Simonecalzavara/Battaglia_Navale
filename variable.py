@@ -12,8 +12,8 @@ cacciatorpediniere=Navi(2,"cacciatorpediniere")
 numero_navi=5
 ship_list=[cacciatorpediniere,sottomarino,incrociatore,corazzata,portaerei]         #creazione della lista delle navi disponibili al giocatore
 ship_list_2=copy.deepcopy(ship_list)                                                #creazione di una seconda lista di navi
-giocatore1='Giocatore1'
-giocatore2='Giocatore2'
+giocatore1='Giocatore 1'
+giocatore2='Giocatore 2'
 
 def initialize_parser():
     parser = argparse.ArgumentParser()
@@ -27,7 +27,6 @@ def initialize_parser():
                         help="Number of columns of the board",
                         type=int,
                         default=9)
-
 
     return parser.parse_args()
 
