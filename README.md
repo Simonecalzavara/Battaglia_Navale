@@ -42,3 +42,20 @@ del colpo e l'applicazione deve fornire il risultato: *mancato*/*colpito*/*affon
 - riconosciento della fine del gioco e proclamazione 
 del vincitore quando tutte le navi di un giocatore sono 
 state affondate.
+
+## Esecuzione
+
+Per eseguire il programma:
+
+-posizionarsi tramite linea di comando nella directory dove risiede il main.py
+
+	cd path/to/directory
+	
+-eseguire il comando
+
+	python3 main.py -r n_righe -c n_colonne
+	
+ permette all'utente di creare il tavolo da gioco con le dimensioni desiderate. Il valore inserito
+ deve essere compreso tra 1 e 15, se i parametri non sono specificati il tavolo di default
+ è di dimensione 9x9
+
