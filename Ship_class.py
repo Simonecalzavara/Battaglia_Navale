@@ -39,11 +39,11 @@ class Navi:
     #metodo che permette di visualizzare lo stato della nave
     def stato(self):
         if len(self.coordinate) == 0:
-            print('la nave é stata affondata')
+            print('La nave é stata affondata')
         elif len(self.coordinate) == self.dimensione:
-            print('la nave non é stata colpita')
+            print('La nave non é stata colpita')
         elif self.dimensione > len(self.coordinate) > 0:
-            print('la nave é stata colpita')
+            print('La nave é stata colpita')
 
     def riempimento(self,board):      #riempimento del tavolo con le coordinate inserite della nave
         for coordinate_rig,coordinate_col in self.coordinate:
