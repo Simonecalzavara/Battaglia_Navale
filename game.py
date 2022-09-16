@@ -46,6 +46,8 @@ def turn(player,ship_list,columns,rows,board_display):
         if hit_guess(board_display, rows, columns,ship_list):
             for ship in ship_list:
                 if not ship.coordinate:
+                    ship.stato()
+                    time.sleep(3)
                     ship_list.remove(ship)
         else:
             break
