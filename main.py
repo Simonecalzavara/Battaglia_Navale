@@ -1,4 +1,6 @@
 import os
+import time
+
 import board as b
 import variable
 import game
@@ -21,6 +23,7 @@ sottomarino, la puoi inserire in 3 caselle
 Cacciatorpediniere la puoi inserire in 2 caselle""")
 
 print("\nLe navi verranno inserite in maniera crescente e secondo la loro dimensione.")
+time.sleep(5)
 
 board_player_1=b.board_add(variable.giocatore1,variable.ship_list,args.rows,args.columns)
 board_player_2=b.board_add(variable.giocatore2,variable.ship_list_2,args.rows,args.columns)
