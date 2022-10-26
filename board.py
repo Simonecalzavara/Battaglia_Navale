@@ -1,3 +1,5 @@
+import time
+
 from variable import legenda_asse_orizzontale_iniziale
 import menu
 import os
@@ -19,21 +21,29 @@ def print_board(board_array, row_size):
 #funzione che permette l'inserimento di una nave all'interno del tavolo
 def board_add(player,ship_list,row_size,col_size):
     board = [[0] * col_size for x in range(row_size)]
+    print(player, 'é il tuo turno di inserire le navi')
+    time.sleep(3)
     for ship in ship_list:
-        print_board(board,row_size)
-        print(player,'é il tuo turno di inserire le navi')
         while True:
-            print("Inserisci la prima coordinata della", ship.name,"\nLa coordinata inserita rappresenta la testa della nave.",
+            os.system('cls')
+            print_board(board, row_size)
+            print(player,"Inserisci la prima coordinata della", ship.name,"\nLa coordinata inserita rappresenta la testa della nave.",
                   "Puoi inserirla in",ship.dimensione,"caselle")
-            coordinate_ = (input('\nInserisci le coordinate: ')).replace(""," ")
-            coordinate=coordinate_.upper()
-            rig,col=coord_type_change(coordinate)
-            if board[rig-1][col-1]==0:
-                if ship.inserimento(col,rig,row_size,col_size,board,menu.menu()):
-                    os.system('cls')
-                    break
-            else:
-                print("\u001b[31mLa casella selezionata è gia occupata\033[0m")
+            try:
+                coordinate_ = (input('\nInserisci le coordinate: ')).replace(""," ")
+                coordinate=coordinate_.upper()
+                rig,col=coord_type_change(coordinate)
+                if board[rig - 1][col - 1] == 0:
+                    if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):
+                        os.system('cls')
+                        break
+                else:
+                    print("\u001b[31mLa casella selezionata è gia occupata\033[0m")
+            except IndexError:
+                print("\u001b[31mInserisci una coordinata valida\033[0m\n")
+                time.sleep(2)
+
+
     return board
 
 def coord_type_change(coordinate):
