@@ -33,12 +33,9 @@ def board_add(player,ship_list,row_size,col_size):
                 coordinate_ = (input('\nInserisci le coordinate: ')).replace(""," ")
                 coordinate=coordinate_.upper()
                 rig,col=coord_type_change(coordinate)
-                if board[rig - 1][col - 1] == 0:
-                    if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):
-                        os.system('cls')
-                        break
-                else:
-                    print("\u001b[31mLa casella selezionata è gia occupata\033[0m")
+                if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):
+                    os.system('cls')
+                    break
             except IndexError:
                 print("\u001b[31mInserisci una coordinata valida\033[0m\n")
                 time.sleep(2)
