@@ -1,3 +1,6 @@
+import time
+
+
 class Navi:
     # creazione delle navi da gioco
 
@@ -35,6 +38,7 @@ class Navi:
         else:
             self.coordinate=[]
             print("\nLa nave che stai inserendo colliderebbe con un alta nave giá piazzata. Inserisci la prima coordinata della nave in una casella valida.")
+            time.sleep(5)
 
     #metodo che permette di visualizzare lo stato della nave
     def stato(self):
