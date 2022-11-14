@@ -28,7 +28,7 @@ class Navi:
                     print("\n\u001b[31mLa coordinata è fuori dalla scacchiera. Inserisci una coordinata valida\033[0m")
             case _:
                 print("\nInserisci il valore corretto di inserimento. Orizzontalmente o Verticalmente")
-        if not self.esiste_posizione(board):
+        if not self.esiste_posizione(board) and not self.esiste_vicino(board,col_size,row_size):
             if len(self.coordinate)==self.dimensione:
                 self.riempimento(board)
                 return True
@@ -59,4 +59,35 @@ class Navi:
         if [guess_col,guess_row] in self.coordinate:
             self.coordinate.remove([guess_col,guess_row])
             return True
+        return False
+
+    def esiste_vicino(self,board,col_size,row_size):                                  #controllo della presenza di navi nel intorno della nave che sta per essere piazzata
+        if self.esiste_vicino_verticale(board,col_size) or self.esiste_vicino_orizzontale(board,row_size):
+            return True
+        return False
+
+    def esiste_vicino_verticale(self,board,col_size):
+        for coordinate_col,coordinate_rig in self.coordinate:
+            if coordinate_col== 1 and board[coordinate_rig-1][coordinate_col]==1:     #nave inserita nella prima colonna e controllo esistenza nave a destra
+                return True
+            elif coordinate_col==col_size:                                            #nave inserita nell ultima colonna e controllo esistenza nave a sinistra
+                if board[coordinate_rig - 1][coordinate_col-2] == 1:
+                    return True
+            elif board[coordinate_rig - 1][coordinate_col] == 1:                      #controllo esistenza nave a destra durante inserimento
+                return True
+            elif board[coordinate_rig - 1][coordinate_col - 2] == 1:                  #controllo esistenza nave a sinistra durante inserimento
+                return True
+        return False
+
+    def esiste_vicino_orizzontale(self,board,row_size):
+        for coordinate_col, coordinate_rig in self.coordinate:
+            if coordinate_rig == 1 and board[coordinate_rig ][coordinate_col-1] == 1: #nave inserita nella prima riga e controllo esistenza nave sotto
+                return True
+            elif coordinate_rig == row_size:                                          #nave inserita nel ultima riga e controllo esistenza nave sopra
+                if board[coordinate_rig - 2][coordinate_col - 1] == 1:
+                    return True
+            elif board[coordinate_rig ][coordinate_col - 1] == 1:                     #controllo esistenza nave sotto durante inserimento
+                return True
+            elif board[coordinate_rig - 2][coordinate_col - 1] == 1:                  #controllo esistenza nave sopra durante inserimento
+                return True
         return False
