@@ -39,6 +39,9 @@ def board_add(player,ship_list,row_size,col_size):
             except IndexError:
                 print("\u001b[31mInserisci una coordinata valida\033[0m\n")
                 time.sleep(2)
+            except UnboundLocalError:
+                print('\u001b[31mInserisci una coordinata sia per le colonne sia per le righe\033[0m\n')
+                time.sleep(2)
 
 
     return board
