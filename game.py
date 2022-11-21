@@ -18,7 +18,6 @@ def hit_guess(board_display,row_size,col_size,ship_list):
     time.sleep(2)
     return False
 
-
 def attack_row(guess_row,row_size_):
     try:
         if guess_row in range(1,row_size_+1):
@@ -38,8 +37,8 @@ def attack_col(guess_col,col_size_):
         print("Inserisci un numero")
 
 # funzione per la gestione del turno del giocatore
-def turn(player,ship_list,columns,rows,board_display):
-    while True:
+def turn(player,ship_list,columns,rows,board_display,game_fin):
+    while True and not game_fin:
         os.system('cls')
         board.print_board(board_display, rows)
         print(player,'é il momento di attaccare\n')
@@ -51,5 +50,11 @@ def turn(player,ship_list,columns,rows,board_display):
                     ship_list.remove(ship)
         else:
             break
-    return ship_list,board_display
+        game_fin=win(ship_list,game_fin)
+    return ship_list,board_display,game_fin
 
+def win(ship_list,game_fin):
+    if not ship_list:
+        game_fin=True
+        return game_fin
+    return game_fin
