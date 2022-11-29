@@ -19,6 +19,12 @@ def hit_guess(board_display,row_size,col_size,ship_list):
     return False
 
 def attack_row(guess_row,row_size_):
+    """
+
+    :param guess_row: valore della riga scelta dal giocatore attaccante
+    :param row_size_: dimensione massima delle righe del tavolo da gioco
+    :return: se la coordinata per l'attacco è all'interno del tavolo da gioco allora restituisce la coordinata stessa altrimenti deve essere reinserita
+    """
     try:
         if guess_row in range(1,row_size_+1):
             return guess_row
@@ -28,6 +34,12 @@ def attack_row(guess_row,row_size_):
         print("Inserisci un numero")
 
 def attack_col(guess_col,col_size_):
+    """
+
+    :param guess_col: valore della colonna scelta dal giocatore attaccante
+    :param col_size_: dimensione massima delle colonne del tavolo da gioco
+    :return: se la coordinata per l'attacco è all'interno del tavolo da gioco allora restituisce la coordinata stessa altrimenti deve essere reinserita
+    """
     try:
         if guess_col in range(1,col_size_+1):
             return guess_col
