@@ -65,6 +65,12 @@ def turn(player,ship_list,columns,rows,board_display,game_fin):
     return ship_list,board_display,game_fin
 
 def win(ship_list,game_fin):
+    """
+
+    :param ship_list: lista delle navi del giocatore avversario
+    :param game_fin: variabile per la gestione della partita. True se la partita è finita altrimenti è False
+    :return: se la lista delle navi dell'avversario è vuota ritorna game_fin True altrimenti False
+    """
     if not ship_list:
         game_fin=True
         return game_fin
