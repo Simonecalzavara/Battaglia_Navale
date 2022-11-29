@@ -36,8 +36,19 @@ def attack_col(guess_col,col_size_):
     except ValueError:
         print("Inserisci un numero")
 
-# funzione per la gestione del turno del giocatore
 def turn(player,ship_list,columns,rows,board_display,game_fin):
+    """
+
+    :param player: giocatore che deve colpire
+    :param ship_list: lista delle navi disponibili del giocatore
+    :param columns: n di colonne presenti all interno del tavolo
+    :param rows: n di righe presenti all interno del tavolo
+    :param board_display: tavolo da gioco del giocatore
+    :param game_fin: variabile per la gestione della fine della partita. True se la partita è finita altrimenti è False
+    :return: ship_list: ritorna la lista delle navi dell'avversario dopo la fase di attacco del giocatore
+    :return: game_fin: valore booleano che indica se la partita è finita o meno
+    :return: board_display: tavolo da gioco con marcati i colpi andati a segno o mancati
+    """
     while True and not game_fin:
         os.system('cls')
         board.print_board(board_display, rows)
