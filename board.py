@@ -1,8 +1,8 @@
 import time
-
 from variable import legenda_asse_orizzontale_iniziale
 import menu
 import os
+import re
 
 #funzione per visualizzare a schermo il campo da gioco
 def print_board(board_array, row_size):
@@ -55,6 +55,7 @@ def coord_type_change(coordinate):
                 break
         except ValueError:
             print("Inserisci una coordinata alfabetica valida")
-    numbers = [int(num) for num in coordinate.split() if num.isdigit()]
-    rig = numbers[0]
+    numbers = "".join(re.findall(r'\d+', coordinate))
+    rig = int(numbers)
+
     return rig,col
