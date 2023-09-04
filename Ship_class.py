@@ -20,7 +20,8 @@ class Navi:
                             self.coordinate.append([coord_col+index,coord_rig])
                             index=index+1
                 else:
-                    print("\n\u001b[31mLa coordinata è fuori dalla scacchiera. Inserisci una coordinata valida\033[0m")
+                    print("\n\u001b[31mLa nave verrá piazzata fuori dal tavolo da gioco. Inserisci una coordinata valida\033[0m")
+                    time.sleep(3)
             case "verticale":
                 if coord_rig+self.dimensione-1 in range(1,col_size+1):
                     while index in range(self.dimensione):
@@ -28,7 +29,8 @@ class Navi:
                             self.coordinate.append([coord_col,coord_rig+index])
                             index=index+1
                 else:
-                    print("\n\u001b[31mLa coordinata è fuori dalla scacchiera. Inserisci una coordinata valida\033[0m")
+                    print("\n\u001b[31mLa nave verrá piazzata fuori dal tavolo da gioco. Inserisci una coordinata valida\033[0m")
+                    time.sleep(3)
             case _:
                 print("\nInserisci il valore corretto di inserimento. Orizzontalmente o Verticalmente")
         if not self.esiste_posizione(board) and not self.esiste_vicino(board,col_size,row_size):
@@ -84,6 +86,12 @@ class Navi:
         return False
 
     def esiste_vicino_orizzontale(self,board,row_size):
+        """
+
+        :param board: tavolo da gioco del giocatore
+        :param row_size: massima dimensione delle righe del tavolo da gioco
+        :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
+        """
         for coordinate_col, coordinate_rig in self.coordinate:
             if coordinate_rig == 1 and board[coordinate_rig ][coordinate_col-1] == 1: #nave inserita nella prima riga e controllo esistenza nave sotto
                 return True
