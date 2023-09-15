@@ -1,34 +1,72 @@
-from Ship_class import *
+from Ship_class import Navi
 import argparse
 import sys
 import copy
+legenda_asse_orizzontale_iniziale = {1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F', 7: 'G', 8: 'H', 9: 'I',
+                                     10: 'L', 11: 'M', 12: 'N', 13: 'O', 14: 'P', 15: 'Q'}
 
-legenda_asse_orizzontale_iniziale={1:'A',2:'B',3:'C',4:'D',5:'E',6:'F',7:'G',8:'H',9:'I',10:'L',11:'M',12:'N',13:'O',14:'P',15:'Q'}
-portaerei=Navi(5,"portaerei")
-corazzata=Navi(4,"corazzata")
-incrociatore=Navi(3,"incrociatore")
-sottomarino=Navi(3,"sottomarino")
-cacciatorpediniere=Navi(2,"cacciatorpediniere")
-numero_navi=5
-ship_list=[cacciatorpediniere,sottomarino,incrociatore,corazzata,portaerei]         #creazione della lista delle navi disponibili al giocatore
-ship_list_2=copy.deepcopy(ship_list)                                                #creazione di una seconda lista di navi
-giocatore1='Giocatore 1'
-giocatore2='Giocatore 2'
+ship_list = [Navi(2, "cacciatorpediniere"), Navi(3, "sottomarino"), Navi(3, "incrociatore"),
+             Navi(4, "corazzata"), Navi(5, "portaerei")]
+
+giocatore1 = 'Giocatore 1'
+giocatore2 = 'Giocatore 2'
 
 def initialize_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-r", "--rows",
-                        help="Number of rows of the board",
+                        help="Numero di righe della griglia",
                         type=int,
                         default=9)
 
     parser.add_argument("-c", "--columns",
-                        help="Number of columns of the board",
+                        help="Numero di colonne della griglia",
                         type=int,
                         default=9)
 
+    parser.add_argument("-s1", "--portaerei",
+                        help="Il numero di Portaerei nella tua flotta, se non specificato, è pari a 1. La dimensione di una "
+                             "Portaerei è 5.",
+                        type=int,
+                        default=1)
+
+    parser.add_argument("-s2", "--corazzate",
+                        help="Il numero di Corazzate nella tua flotta, se non specificato, è pari a 1. La dimensione di una "
+                             "Corazzata è 4",
+                        type=int,
+                        default=1)
+
+    parser.add_argument("-s3", "--sottomarini",
+                        help="Il numero di Sottomarini nella tua flotta, se non specificato, è pari a 1. La dimensione di un "
+                             "Sottomarino è 3",
+                        type=int,
+                        default=1)
+
+    parser.add_argument("-s4", "--incrociatori",
+                        help="Il numero di Incrociatori nella tua flotta, se non specificato, è pari a 1. La dimensione di un "
+                             "Incrociatore è 3",
+                        type=int,
+                        default=1)
+
+    parser.add_argument("-s5", "--cacciatorpedinieri",
+                        help="Il numero di Cacciatorpedinieri nella tua flotta, se non specificato, è pari a 1. La dimensione di un "
+                             "Cacciatorpediniere è 2",
+                        type=int,
+                        default=1)
+
     return parser.parse_args()
+
+
+def create_ship_list(args):
+    ship_counts = [args.cacciatorpedinieri, args.incrociatori, args.sottomarini, args.corazzate, args.portaerei]
+    ship_list_dynamic = []
+
+    for count, ship in zip(ship_counts, ship_list):
+        for _ in range(count):
+            ship_list_dynamic.append(copy.deepcopy(ship))
+
+    return ship_list_dynamic
+
 
 def check_parser(args):
     try:
@@ -39,8 +77,23 @@ def check_parser(args):
 
 def check_arguments(args):
     if not 0 < args.rows < 15:
-        print('\u001b[31mInvalid number of rows\033[0m')
+        print('\u001b[31mNumero di righe non valido\033[0m')
         raise ValueError
     if not 0 < args.columns < 15:
-        print('\u001b[31mInvalid number of columns\033[0m')
+        print('\u001b[31mNumero di colonne non valido\033[0m')
+        raise ValueError
+    if not 0 <= args.portaerei <= 2:
+        print('\u001b[31mNumero di portaerei non valido\033[0m')
+        raise ValueError
+    if not 0 <= args.corazzate <= 3:
+        print('\u001b[31mNumero di corazzate non valido\033[0m')
+        raise ValueError
+    if not 0 <= args.sottomarini <= 4:
+        print('\u001b[31mNumero di sottomarini non valido\033[0m')
+        raise ValueError
+    if not 0 <= args.incrociatori <= 5:
+        print('\u001b[31mNumero di incrociatori non valido\033[0m')
+        raise ValueError
+    if not 0 <= args.cacciatorpedinieri <= 5:
+        print('\u001b[31mNumero di cacciatorpedinieri non valido\033[0m')
         raise ValueError
