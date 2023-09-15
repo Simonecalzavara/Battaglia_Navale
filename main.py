@@ -10,6 +10,10 @@ print("Benvenuto ")
 
 args = variable.initialize_parser()
 variable.check_parser(args)
+
+ship_list_1 = variable.create_ship_list(args)
+ship_list_2 = variable.create_ship_list(args)
+
 board_display1 = [["O"] * args.columns for x in range(args.rows)]
 board_display2 = [["O"] * args.columns for x in range(args.rows)]
 
@@ -24,13 +28,13 @@ Cacciatorpediniere la puoi inserire in 2 caselle""")
 print("\nLe navi verranno inserite in maniera crescente e secondo la loro dimensione.")
 time.sleep(5)
 
-board_player_1=b.board_add(variable.giocatore1,variable.ship_list,args.rows,args.columns)
-board_player_2=b.board_add(variable.giocatore2,variable.ship_list_2,args.rows,args.columns)
+board_player_1=b.board_add(variable.giocatore1,ship_list_1,args.rows,args.columns)
+board_player_2=b.board_add(variable.giocatore2,ship_list_2,args.rows,args.columns)
 
 game_fin=False
 while not game_fin:
-    player1, board_display1, game_fin=game.turn(variable.giocatore1, variable.ship_list_2, args.columns, args.rows, board_display1, game_fin)
-    player2, board_display2, game_fin=game.turn(variable.giocatore2, variable.ship_list, args.columns, args.rows, board_display2, game_fin)
+    player1, board_display1, game_fin=game.turn(variable.giocatore1, ship_list_2, args.columns, args.rows, board_display1, game_fin)
+    player2, board_display2, game_fin=game.turn(variable.giocatore2, ship_list_1, args.columns, args.rows, board_display2, game_fin)
 
 print("hai vinto la partita")
 
