@@ -58,6 +58,11 @@ def initialize_parser():
 
 
 def create_ship_list(args):
+    """
+    Funzione che crea la lista di navi in maniera dinamica in funzione dei parametri di input dei giocatori durante l'avvio del gioco
+    :param args: contiene i parametri forniti in input dai giocatori durante l'inizializzazione della sessione di gioco
+    :return: restituisce la lista delle navi creata in maniera dinamica
+    """
     ship_counts = [args.cacciatorpedinieri, args.incrociatori, args.sottomarini, args.corazzate, args.portaerei]
     ship_list_dynamic = []
 
