@@ -18,7 +18,7 @@ class Navi:
         :param row_size: dimensione del tavolo da gioco associata alle righe
         :param col_size: dimensione del tavolo da gioco associata alle colonne
         :param board: tavolo da gioco associato al giocatore
-        :param orientamento: modalitá di inserimento della nave. La nave puó essere inserita in maniera vertical o in maniera orizzontale
+        :param orientamento: verso d'inserimento della nave. La nave puó essere inserita in maniera vertical o in maniera orizzontale
         :return: Restituisce il valore True se la nave é stata inserita in maniera corretta all'interno del tavolo da gioco, altrimenti False
         """
         index=0
@@ -55,7 +55,7 @@ class Navi:
     #metodo che permette di visualizzare lo stato della nave
     def stato(self):
         """
-        metodo della classe Ship che restituisce lo stato della nave
+        Metodo della classe Ship che restituisce lo stato della nave
         :return: print dello stato attuale della nave
         """
         if len(self.coordinate) == 0:
@@ -100,6 +100,7 @@ class Navi:
         Metodo della classe per effettuare un check sulla presenza di navi vicine durante l'inserimento di una nave sul tavolo da gioco
         :param board: tavolo da gioco del giocatore
         :param col_size: massima dimensione delle colonne del tavolo da gioco
+        :param row_size: massima dimensione delle righe del tavolo da gioco
         :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
         """
         if self.esiste_vicino_verticale(board,col_size) or self.esiste_vicino_orizzontale(board,row_size):
