@@ -55,7 +55,7 @@ def attack_col(guess_col,col_size_):
     except ValueError:
         print("Inserisci un numero")
 
-def turn(player,ship_list,columns,rows,board_display,game_fin):
+def turn(player,ship_list,columns,rows,board_display,game_fin,option):
     """
 
     :param player: giocatore che deve colpire
@@ -64,11 +64,27 @@ def turn(player,ship_list,columns,rows,board_display,game_fin):
     :param rows: n di righe presenti all interno del tavolo
     :param board_display: tavolo da gioco del giocatore
     :param game_fin: variabile per la gestione della fine della partita. True se la partita è finita altrimenti è False
+    :param option: variabile che indica la modalita di gioco
     :return: ship_list: ritorna la lista delle navi dell'avversario dopo la fase di attacco del giocatore
     :return: game_fin: valore booleano che indica se la partita è finita o meno
     :return: board_display: tavolo da gioco con marcati i colpi andati a segno o mancati
     """
-    while True and not game_fin:
+    if option==0:
+        while True and not game_fin:
+            os.system('cls')
+            board.print_board(board_display, rows)
+            print(player,'é il momento di attaccare\n')
+            if hit_guess(board_display, rows, columns,ship_list):
+                for ship in ship_list:
+                    if not ship.coordinate:
+                        ship.stato()
+                        time.sleep(3)
+                        ship_list.remove(ship)
+            else:
+                break
+            game_fin=win(ship_list,game_fin)
+        return ship_list,board_display,game_fin
+    else:
         os.system('cls')
         board.print_board(board_display, rows)
         print(player,'é il momento di attaccare\n')
@@ -78,10 +94,8 @@ def turn(player,ship_list,columns,rows,board_display,game_fin):
                     ship.stato()
                     time.sleep(3)
                     ship_list.remove(ship)
-        else:
-            break
         game_fin=win(ship_list,game_fin)
-    return ship_list,board_display,game_fin
+        return ship_list,board_display,game_fin
 
 def win(ship_list,game_fin):
     """

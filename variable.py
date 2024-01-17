@@ -53,6 +53,11 @@ def initialize_parser():
                              "Cacciatorpediniere è 2",
                         type=int,
                         default=1)
+    parser.add_argument("-o", "--option",
+                        help="La modalitá di gioco desiderata, se 0 (default) i turni finiscono quando il giocatore sbaglia "
+                             "altrimenti 1 ",
+                        type=int,
+                        default=0)
 
     return parser.parse_args()
 
@@ -101,4 +106,7 @@ def check_arguments(args):
         raise ValueError
     if not 0 <= args.cacciatorpedinieri <= 5:
         print('\u001b[31mNumero di cacciatorpedinieri non valido\033[0m')
+        raise ValueError
+    if not (args.option == 0 or args.option == 1):
+        print('\u001b[31mModalita di gioco non valida. Seleziona 0 o 1\033[0m')
         raise ValueError

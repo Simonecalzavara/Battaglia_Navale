@@ -33,8 +33,8 @@ board_player_2=b.board_add(variable.giocatore2,ship_list_2,args.rows,args.column
 
 game_fin=False
 while not game_fin:
-    player1, board_display1, game_fin=game.turn(variable.giocatore1, ship_list_2, args.columns, args.rows, board_display1, game_fin)
-    player2, board_display2, game_fin=game.turn(variable.giocatore2, ship_list_1, args.columns, args.rows, board_display2, game_fin)
+    player1, board_display1, game_fin=game.turn(variable.giocatore1, ship_list_2, args.columns, args.rows, board_display1, game_fin, args.option)
+    player2, board_display2, game_fin=game.turn(variable.giocatore2, ship_list_1, args.columns, args.rows, board_display2, game_fin, args.option)
 
 print("hai vinto la partita")
 
