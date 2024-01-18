@@ -106,7 +106,6 @@ class Navi:
         :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
         """
         if self.esiste_vicino_verticale(board,col_size) or self.esiste_vicino_orizzontale(board,row_size):
-            print("ciao")
             return True
         return False
 
