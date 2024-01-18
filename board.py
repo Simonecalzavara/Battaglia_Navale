@@ -62,11 +62,6 @@ def board_add(player,ship_list,row_size,col_size):
 def coord_type_change():
     """
     Funzione che consente di cambiare le coordinate inserite in formato numerico
-    :param board: stringa contente le coordinate in formato alfanumerico
-    :param row_size: massima dimensione delle righe del tavolo da gioco
-    :param player: stringa contente il nome del giocatore
-    :param ship: tipologia della nave da inserire all'interno del tavolo da gioco
-    :param dimensione: dimensione della nave da inserire all'interno del tavolo da gioco
     :return: col: contiene la coordinata associata alle colonne all'interno del tavolo da gioco rig: contiene la coordinata associata alle righe all'interno del tavolo da gioco
     """
     formatted_coordinates=False
