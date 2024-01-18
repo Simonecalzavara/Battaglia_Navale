@@ -10,8 +10,8 @@ def hit_guess(board_display,row_size,col_size,ship_list):
     :param ship_list: lista con le navi piazzate dall'avversario
     :return: True se è stata colpita una nave altrimenti False
     """
-    guess=((input("\nInserisci le coordinate per l'attacco: ")).replace(""," ")).upper()
-    guess_col,guess_row=board.coord_type_change(guess)
+    #guess=((input("\nInserisci le coordinate per l'attacco: ")).replace(""," ")).upper()
+    guess_col,guess_row=board.coord_type_change()
     hit_row=attack_row(guess_row,row_size)
     hit_col=attack_col(guess_col,col_size)
     for ship in ship_list:

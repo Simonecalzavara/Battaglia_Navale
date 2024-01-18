@@ -38,9 +38,14 @@ def board_add(player,ship_list,row_size,col_size):
     print(player, 'é il tuo turno di inserire le navi')
     time.sleep(3)
     for ship in ship_list:
+        os.system('cls')
+        print_board(board, row_size)
+        print(player, "Inserisci la prima coordinata della", ship.name,
+              "\nLa coordinata inserita rappresenta la testa della nave.",
+              "Puoi inserirla in", ship.dimensione, "caselle")
         while True:
             try:
-                rig,col=coord_type_change(board,row_size,player,ship.name,ship.dimensione)
+                rig,col=coord_type_change()
                 if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):
                     os.system('cls')
                     break
@@ -54,7 +59,7 @@ def board_add(player,ship_list,row_size,col_size):
 
     return board
 
-def coord_type_change(board,row_size,player,ship,dimensione):
+def coord_type_change():
     """
     Funzione che consente di cambiare le coordinate inserite in formato numerico
     :param board: stringa contente le coordinate in formato alfanumerico
@@ -64,11 +69,6 @@ def coord_type_change(board,row_size,player,ship,dimensione):
     :param dimensione: dimensione della nave da inserire all'interno del tavolo da gioco
     :return: col: contiene la coordinata associata alle colonne all'interno del tavolo da gioco rig: contiene la coordinata associata alle righe all'interno del tavolo da gioco
     """
-    os.system('cls')
-    print_board(board, row_size)
-    print(player, "Inserisci la prima coordinata della", ship,
-          "\nLa coordinata inserita rappresenta la testa della nave.",
-          "Puoi inserirla in", dimensione, "caselle")
     formatted_coordinates=False
     while not formatted_coordinates:
         coordinate_ = (input('\nInserisci le coordinate: ')).replace("", " ")
@@ -80,13 +80,13 @@ def coord_type_change(board,row_size,player,ship,dimensione):
                     col = key
                     break
             except ValueError:
-                print("\u001bInserisci una coordinata valida per le colonne\033[0m\n")
+                print("\u001b[31mInserisci una coordinata valida per le colonne\033[0m\n")
         numbers = "".join(re.findall(r'\d+', coordinate))
         if numbers != "" :
             rig = int(numbers)
             formatted_coordinates=True
         else:
-            print("\033[0m\nInserisci una coordinata valida per le righe\033[0m\n")
+            print("\u001b[31mInserisci una coordinata valida per le righe\033[0m\n")
             continue
 
     return rig,col
