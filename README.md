@@ -54,6 +54,18 @@ Per eseguire il programma:
 -eseguire il comando
 
 	python3 main.py -r n_righe -c n_colonne
+
+-e' possibile scegliere i seguenti parametri per l'inizializzazione della partita
+
+	-r numero di righe
+	-c numero di colonne
+	-s1 numero di portaerei
+	-s2 numero di corazzate
+	-s3 numero di sottomarini
+	-s4 numero di incrociatori
+	-s5 numero di cacciatorpedinieri
+	-o modalitá di gioco desiderata. Impostando il valore ad 1 i giocatori hanno a disposizione un colpo a turno, altrimenti il turno finisce quando il giocatore sbaglia il colpo
+	
 	
  permette all'utente di creare il tavolo da gioco con le dimensioni desiderate. Il valore inserito
  deve essere compreso tra 1 e 15, se i parametri non sono specificati il tavolo di default
