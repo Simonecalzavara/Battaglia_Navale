@@ -54,8 +54,12 @@ Per eseguire il programma:
 -eseguire il comando
 
 	python3 main.py -r n_righe -c n_colonne
+	
+ permette all'utente di creare il tavolo da gioco con le dimensioni desiderate. Il valore inserito
+ deve essere compreso tra 1 e 15, se i parametri non sono specificati il tavolo di default
+ è di dimensione 9x9
 
--e' possibile scegliere i seguenti parametri per l'inizializzazione della partita
+-ulteriori parametri per l'inizializzazione della partita
 
 	-r numero di righe
 	-c numero di colonne
@@ -66,8 +70,4 @@ Per eseguire il programma:
 	-s5 numero di cacciatorpedinieri
 	-o modalitá di gioco desiderata. Impostando il valore ad 1 i giocatori hanno a disposizione un colpo a turno, altrimenti il turno finisce quando il giocatore sbaglia il colpo
 	
-	
- permette all'utente di creare il tavolo da gioco con le dimensioni desiderate. Il valore inserito
- deve essere compreso tra 1 e 15, se i parametri non sono specificati il tavolo di default
- è di dimensione 9x9
 
