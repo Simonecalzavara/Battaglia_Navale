@@ -106,6 +106,7 @@ class Navi:
         :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
         """
         if self.esiste_vicino_verticale(board,col_size) or self.esiste_vicino_orizzontale(board,row_size):
+            print("ciao")
             return True
         return False
 
@@ -122,9 +123,9 @@ class Navi:
             elif coordinate_col==col_size:                                            #nave inserita nell ultima colonna e controllo esistenza nave a sinistra
                 if board[coordinate_rig - 1][coordinate_col-2] == 1:
                     return True
-            elif board[coordinate_rig - 1][coordinate_col] == 1:                      #controllo esistenza nave a destra durante inserimento
+            elif board[coordinate_rig - 1][coordinate_col] == 1 and coordinate_col != col_size:                      #controllo esistenza nave a destra durante inserimento
                 return True
-            elif board[coordinate_rig - 1][coordinate_col - 2] == 1:                  #controllo esistenza nave a sinistra durante inserimento
+            elif board[coordinate_rig - 1][coordinate_col - 2] == 1 and coordinate_col != 1:    #controllo esistenza nave a sinistra durante inserimento
                 return True
         return False
 
@@ -138,11 +139,11 @@ class Navi:
         for coordinate_col, coordinate_rig in self.coordinate:
             if coordinate_rig == 1 and board[coordinate_rig ][coordinate_col-1] == 1: #nave inserita nella prima riga e controllo esistenza nave sotto
                 return True
-            elif coordinate_rig == row_size:                                          #nave inserita nel ultima riga e controllo esistenza nave sopra
+            elif coordinate_rig == row_size:    #nave inserita nel ultima riga e controllo esistenza nave sopra
                 if board[coordinate_rig - 2][coordinate_col - 1] == 1:
                     return True
-            elif board[coordinate_rig ][coordinate_col - 1] == 1:                     #controllo esistenza nave sotto durante inserimento
+            elif board[coordinate_rig ][coordinate_col - 1] == 1 and coordinate_rig != row_size:                     #controllo esistenza nave sotto durante inserimento
                 return True
-            elif board[coordinate_rig - 2][coordinate_col - 1] == 1:                  #controllo esistenza nave sopra durante inserimento
+            elif board[coordinate_rig - 2][coordinate_col - 1] == 1 and coordinate_rig != 1:                  #controllo esistenza nave sopra durante inserimento
                 return True
         return False
