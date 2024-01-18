@@ -39,14 +39,8 @@ def board_add(player,ship_list,row_size,col_size):
     time.sleep(3)
     for ship in ship_list:
         while True:
-            os.system('cls')
-            print_board(board, row_size)
-            print(player,"Inserisci la prima coordinata della", ship.name,"\nLa coordinata inserita rappresenta la testa della nave.",
-                  "Puoi inserirla in",ship.dimensione,"caselle")
             try:
-                coordinate_ = (input('\nInserisci le coordinate: ')).replace(""," ")
-                coordinate=coordinate_.upper()
-                rig,col=coord_type_change(coordinate)
+                rig,col=coord_type_change(board,row_size,player,ship.name,ship.dimensione)
                 if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):
                     os.system('cls')
                     break
@@ -60,21 +54,39 @@ def board_add(player,ship_list,row_size,col_size):
 
     return board
 
-def coord_type_change(coordinate):
+def coord_type_change(board,row_size,player,ship,dimensione):
     """
     Funzione che consente di cambiare le coordinate inserite in formato numerico
-    :param coordinate: stringa contente le coordinate in formato alfanumerico
+    :param board: stringa contente le coordinate in formato alfanumerico
+    :param row_size: massima dimensione delle righe del tavolo da gioco
+    :param player: stringa contente il nome del giocatore
+    :param ship: tipologia della nave da inserire all'interno del tavolo da gioco
+    :param dimensione: dimensione della nave da inserire all'interno del tavolo da gioco
     :return: col: contiene la coordinata associata alle colonne all'interno del tavolo da gioco rig: contiene la coordinata associata alle righe all'interno del tavolo da gioco
     """
-    for key in legenda_asse_orizzontale_iniziale:
-        try:
-            letter = coordinate.find(legenda_asse_orizzontale_iniziale.get(key))
-            if legenda_asse_orizzontale_iniziale.get(key) == coordinate[letter]:
-                col = key
-                break
-        except ValueError:
-            print("Inserisci una coordinata alfabetica valida")
-    numbers = "".join(re.findall(r'\d+', coordinate))
-    rig = int(numbers)
+    os.system('cls')
+    print_board(board, row_size)
+    print(player, "Inserisci la prima coordinata della", ship,
+          "\nLa coordinata inserita rappresenta la testa della nave.",
+          "Puoi inserirla in", dimensione, "caselle")
+    formatted_coordinates=False
+    while not formatted_coordinates:
+        coordinate_ = (input('\nInserisci le coordinate: ')).replace("", " ")
+        coordinate = coordinate_.upper()
+        for key in legenda_asse_orizzontale_iniziale:
+            try:
+                letter = coordinate.find(legenda_asse_orizzontale_iniziale.get(key))
+                if legenda_asse_orizzontale_iniziale.get(key) == coordinate[letter]:
+                    col = key
+                    break
+            except ValueError:
+                print("\u001bInserisci una coordinata valida per le colonne\033[0m\n")
+        numbers = "".join(re.findall(r'\d+', coordinate))
+        if numbers != "" :
+            rig = int(numbers)
+            formatted_coordinates=True
+        else:
+            print("\033[0m\nInserisci una coordinata valida per le righe\033[0m\n")
+            continue
 
     return rig,col
