@@ -11,19 +11,29 @@ def hit_guess(board_display,row_size,col_size,ship_list):
     :return: True se è stata colpita una nave altrimenti False
     """
     #guess=((input("\nInserisci le coordinate per l'attacco: ")).replace(""," ")).upper()
-    guess_col,guess_row=board.coord_type_change()
-    hit_row=attack_row(guess_row,row_size)
-    hit_col=attack_col(guess_col,col_size)
-    for ship in ship_list:
-        if ship.hit(hit_col,hit_row):
-            print("Hai colpito la nave!")
-            board_display[guess_col-1][guess_row-1]='\u001b[33m*\033[0m'
+    while True:
+        try:
+            guess_col, guess_row = board.coord_type_change()
+            hit_row=attack_row(guess_row,row_size)
+            hit_col=attack_col(guess_col,col_size)
+            for ship in ship_list:
+                if ship.hit(hit_col, hit_row):
+                    print("Hai colpito la nave!")
+                    board_display[guess_col - 1][guess_row - 1] = '\u001b[33m*\033[0m'
+                    time.sleep(2)
+                    return True
+            print("Non hai colpito nessuna nave")
+            board_display[guess_col - 1][guess_row - 1] = '\u001b[31mX\033[0m'
             time.sleep(2)
-            return True
-    print("Non hai colpito nessuna nave")
-    board_display[guess_col - 1][guess_row - 1] = '\u001b[31mX\033[0m'
-    time.sleep(2)
-    return False
+            return False
+        except IndexError:
+            time.sleep(2)
+            continue
+        except UnboundLocalError:
+            print('\u001b[31mInserisci una coordinata sia per le colonne sia per le righe\033[0m\n')
+            time.sleep(2)
+            continue
+
 
 def attack_row(guess_row,row_size_):
     """
