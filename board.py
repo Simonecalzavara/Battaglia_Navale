@@ -46,7 +46,7 @@ def board_add(player,ship_list,row_size,col_size):
         while True:
             try:
                 rig,col=coord_type_change()
-                if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):
+                if ship.inserimento(col, rig, row_size, col_size, board, menu.menu()):      #metodo della classe Navi che gestisce l'inserimento delle navi all'interno del tavolo da gioco
                     os.system('cls')
                     break
             except IndexError:
@@ -64,11 +64,11 @@ def coord_type_change():
     Funzione che consente di cambiare le coordinate inserite in formato numerico
     :return: col: contiene la coordinata associata alle colonne all'interno del tavolo da gioco rig: contiene la coordinata associata alle righe all'interno del tavolo da gioco
     """
-    formatted_coordinates=False
+    formatted_coordinates=False                                                         #variabile locale che viene assegnata a True solamente nel caso in cui le coordinate vengono inserite nel formato giusto
     while not formatted_coordinates:
         coordinate_ = (input('\nInserisci le coordinate: ')).replace("", " ")
         coordinate = coordinate_.upper()
-        if sum(c.isalpha() for c in coordinate) != 1:
+        if sum(c.isalpha() for c in coordinate) != 1:                                   #check sul numero di coordinate alfabetiche inserite dal giocatore
             print("\u001b[31mInserisci una coordinata per le colonne\033[0m\n")
             continue
         for key in legenda_asse_orizzontale_iniziale:
@@ -79,7 +79,7 @@ def coord_type_change():
                     break
             except ValueError:
                 print("\u001b[31mInserisci una coordinata valida per le colonne\033[0m\n")
-        numbers = "".join(re.findall(r'\d+', coordinate))
+        numbers = "".join(re.findall(r'\d+', coordinate))                               #regular expression che va a ricercare solamente i digits all'interno delle coordinate inserite dal giocatore
         if numbers != "" :
             rig = int(numbers)
             formatted_coordinates=True
