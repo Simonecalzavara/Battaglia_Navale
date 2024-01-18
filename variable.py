@@ -2,16 +2,22 @@ from Ship_class import Navi
 import argparse
 import sys
 import copy
+
+#Dizionario necessario alla creazione del tavolo da gioco
 legenda_asse_orizzontale_iniziale = {1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F', 7: 'G', 8: 'H', 9: 'I',
                                      10: 'L', 11: 'M', 12: 'N', 13: 'O', 14: 'P', 15: 'Q'}
 
 ship_list = [Navi(2, "cacciatorpediniere"), Navi(3, "sottomarino"), Navi(3, "incrociatore"),
              Navi(4, "corazzata"), Navi(5, "portaerei")]
 
+#variabili contenenti il nome dei giocatori in formato stringa
 giocatore1 = 'Giocatore 1'
 giocatore2 = 'Giocatore 2'
 
 def initialize_parser():
+    """
+    Parser che permette la personalizzazione del numero di navi, le dimensioni del tavolo da gioco e la tipologia di modalita di gioco
+    """
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-r", "--rows",
@@ -86,6 +92,9 @@ def check_parser(args):
 
 
 def check_arguments(args):
+    """
+    Funziona che effettua un check sui valori forniti di personalizzazione forniti in ingresso dai giocatori
+    """
     if not 0 < args.rows < 15:
         print('\u001b[31mNumero di righe non valido\033[0m')
         raise ValueError
