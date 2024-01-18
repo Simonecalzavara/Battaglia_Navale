@@ -68,6 +68,9 @@ def coord_type_change():
     while not formatted_coordinates:
         coordinate_ = (input('\nInserisci le coordinate: ')).replace("", " ")
         coordinate = coordinate_.upper()
+        if sum(c.isalpha() for c in coordinate) != 1:
+            print("\u001b[31mInserisci una coordinata per le colonne\033[0m\n")
+            continue
         for key in legenda_asse_orizzontale_iniziale:
             try:
                 letter = coordinate.find(legenda_asse_orizzontale_iniziale.get(key))
