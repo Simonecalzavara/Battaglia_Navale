@@ -44,8 +44,8 @@ class Navi:
                     time.sleep(3)
             case _:
                 print("\nInserisci il valore corretto di inserimento. Orizzontalmente o Verticalmente")
-        if not self.esiste_posizione(board) and not self.esiste_vicino(board,col_size,row_size):
-            if len(self.coordinate)==self.dimensione:
+        if not self.esiste_posizione(board) and not self.esiste_vicino(board,col_size,row_size):            #check per verificare che la nave possa essere inserita all'interno del tavolo da gioco
+            if len(self.coordinate)==self.dimensione:                                                       #seguendo le regole del gioco
                 self.riempimento(board)
                 return True
         else:
@@ -92,8 +92,8 @@ class Navi:
         :return: True se una coordinata della nave é stata colpita altrimenti False
         """
         if [guess_col,guess_row] in self.coordinate:
-            self.coordinate.remove([guess_col,guess_row])
-            self.coordinate_colpite.append([guess_col,guess_row])
+            self.coordinate.remove([guess_col,guess_row])                            #rimozione delle coordinate dalla lista delle coordinate della nave colpita
+            self.coordinate_colpite.append([guess_col,guess_row])                    #aggiunta delle coordinate colpite all'interno della lista delle coordinate colpite della nave
             return True
         return False
 
@@ -105,7 +105,7 @@ class Navi:
         :param row_size: massima dimensione delle righe del tavolo da gioco
         :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
         """
-        if self.esiste_vicino_verticale(board,col_size) or self.esiste_vicino_orizzontale(board,row_size):
+        if self.esiste_vicino_verticale(board,col_size) or self.esiste_vicino_orizzontale(board,row_size):          #viene effettuato un check dei vicini sia verticalmente che orizzontalmente
             return True
         return False
 
@@ -117,14 +117,14 @@ class Navi:
         :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
         """
         for coordinate_col,coordinate_rig in self.coordinate:
-            if coordinate_col== 1 and board[coordinate_rig-1][coordinate_col]==1:     #nave inserita nella prima colonna e controllo esistenza nave a destra
+            if coordinate_col== 1 and board[coordinate_rig-1][coordinate_col]==1:                                   #nave inserita nella prima colonna e controllo esistenza nave a destra
                 return True
-            elif coordinate_col==col_size:                                            #nave inserita nell ultima colonna e controllo esistenza nave a sinistra
+            elif coordinate_col==col_size:                                                                          #nave inserita nell ultima colonna e controllo esistenza nave a sinistra
                 if board[coordinate_rig - 1][coordinate_col-2] == 1:
                     return True
-            elif board[coordinate_rig - 1][coordinate_col] == 1 and coordinate_col != col_size:                      #controllo esistenza nave a destra durante inserimento
+            elif board[coordinate_rig - 1][coordinate_col] == 1 and coordinate_col != col_size:                     #controllo esistenza nave a destra durante inserimento
                 return True
-            elif board[coordinate_rig - 1][coordinate_col - 2] == 1 and coordinate_col != 1:    #controllo esistenza nave a sinistra durante inserimento
+            elif board[coordinate_rig - 1][coordinate_col - 2] == 1 and coordinate_col != 1:                        #controllo esistenza nave a sinistra durante inserimento
                 return True
         return False
 
@@ -136,13 +136,13 @@ class Navi:
         :return: True se esiste una coordinata di un altra nave vicino alla nave che sta per essere piazzata, altrimenti False
         """
         for coordinate_col, coordinate_rig in self.coordinate:
-            if coordinate_rig == 1 and board[coordinate_rig ][coordinate_col-1] == 1: #nave inserita nella prima riga e controllo esistenza nave sotto
+            if coordinate_rig == 1 and board[coordinate_rig ][coordinate_col-1] == 1:                               #nave inserita nella prima riga e controllo esistenza nave sotto
                 return True
-            elif coordinate_rig == row_size:    #nave inserita nel ultima riga e controllo esistenza nave sopra
+            elif coordinate_rig == row_size:                                                                        #nave inserita nel ultima riga e controllo esistenza nave sopra
                 if board[coordinate_rig - 2][coordinate_col - 1] == 1:
                     return True
-            elif board[coordinate_rig ][coordinate_col - 1] == 1 and coordinate_rig != row_size:                     #controllo esistenza nave sotto durante inserimento
+            elif board[coordinate_rig ][coordinate_col - 1] == 1 and coordinate_rig != row_size:                    #controllo esistenza nave sotto durante inserimento
                 return True
-            elif board[coordinate_rig - 2][coordinate_col - 1] == 1 and coordinate_rig != 1:                  #controllo esistenza nave sopra durante inserimento
+            elif board[coordinate_rig - 2][coordinate_col - 1] == 1 and coordinate_rig != 1:                        #controllo esistenza nave sopra durante inserimento
                 return True
         return False
