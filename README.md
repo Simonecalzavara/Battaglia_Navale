@@ -68,6 +68,7 @@ Per eseguire il programma:
 	-s3 numero di sottomarini
 	-s4 numero di incrociatori
 	-s5 numero di cacciatorpedinieri
-	-o modalitá di gioco desiderata. Impostando il valore ad 1 i giocatori hanno a disposizione un colpo a turno, altrimenti il turno finisce quando il giocatore sbaglia il colpo
+	-o modalitá di gioco desiderata. Impostando il valore ad 1 i giocatori hanno a disposizione un 
+	   colpo a turno, altrimenti il turno finisce quando il giocatore sbaglia il colpo
 	
 
