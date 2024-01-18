@@ -78,6 +78,10 @@ def turn(player,ship_list,columns,rows,board_display,game_fin,option):
                 for ship in ship_list:
                     if not ship.coordinate:
                         ship.stato()
+                        for coordinate in ship.coordinate_colpite:
+                            coordinate_col=coordinate[0]
+                            coordinate_rig=coordinate[1]
+                            board_display[coordinate_rig - 1][coordinate_col - 1] = '\u001b[32m*\033[0m'
                         time.sleep(3)
                         ship_list.remove(ship)
             else:

@@ -8,6 +8,7 @@ class Navi:
         self.dimensione = dimensione
         self.name=name
         self.coordinate = []
+        self.coordinate_colpite=[]
 
     #metodo della classe che permette l'inserimento delle coordinate della nave
     def inserimento(self, coord_col, coord_rig,row_size,col_size,board,orientamento):
@@ -92,6 +93,7 @@ class Navi:
         """
         if [guess_col,guess_row] in self.coordinate:
             self.coordinate.remove([guess_col,guess_row])
+            self.coordinate_colpite.append([guess_col,guess_row])
             return True
         return False
 
