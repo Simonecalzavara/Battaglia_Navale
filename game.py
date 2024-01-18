@@ -17,11 +17,11 @@ def hit_guess(board_display,row_size,col_size,ship_list):
     for ship in ship_list:
         if ship.hit(hit_col,hit_row):
             print("Hai colpito la nave!")
-            board_display[guess_col-1][guess_row-1]='*'
+            board_display[guess_col-1][guess_row-1]='\u001b[33m*\033[0m'
             time.sleep(2)
             return True
     print("Non hai colpito nessuna nave")
-    board_display[guess_col - 1][guess_row - 1] = 'X'
+    board_display[guess_col - 1][guess_row - 1] = '\u001b[31mX\033[0m'
     time.sleep(2)
     return False
 
